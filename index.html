@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sleep well - D4vd</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            background:
+                radial-gradient(circle at 20% 25%, rgba(130, 140, 190, 0.12) 1px, transparent 2px),
+                radial-gradient(circle at 80% 70%, rgba(130, 140, 190, 0.10) 1px, transparent 2px),
+                #0b0d20;
+
+            background-size: 180px 180px, 230px 230px;
+
+            color: #b9b8c9;
+            font-family: Georgia, "Times New Roman", serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Contenedor principal */
+
+        .menu-container {
+            width: 340px;
+            min-height: 500px;
+
+            padding: 45px 35px;
+
+            border-left: 1px solid rgba(180, 185, 220, 0.25);
+            border-right: 1px solid rgba(180, 185, 220, 0.25);
+
+            text-align: center;
+
+            position: relative;
+        }
+
+        /* Título */
+
+        .title {
+            font-size: 22px;
+            font-weight: normal;
+            letter-spacing: 1px;
+
+            margin: 0;
+            color: #d0cedb;
+        }
+
+        .line {
+            width: 18px;
+            height: 1px;
+
+            background: #aaaabd;
+
+            margin: 10px auto 45px;
+        }
+
+        /* Botones */
+
+        .menu-button {
+            display: block;
+
+            width: 100%;
+            padding: 17px 10px;
+
+            margin: 16px 0;
+
+            background: rgba(15, 17, 38, 0.35);
+
+            border: 1px solid rgba(160, 165, 200, 0.22);
+            border-radius: 3px;
+
+            color: #aaa9bb;
+
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 13px;
+            letter-spacing: 2px;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            transition:
+                background 0.3s ease,
+                border-color 0.3s ease,
+                color 0.3s ease,
+                transform 0.3s ease;
+        }
+
+        .menu-button:hover {
+            background: rgba(90, 95, 135, 0.12);
+
+            border-color: rgba(190, 195, 225, 0.45);
+
+            color: #dddce7;
+
+            transform: translateY(-2px);
+        }
+
+        /* Texto inferior */
+
+        .footer {
+            position: absolute;
+
+            bottom: 18px;
+            left: 0;
+            right: 0;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 7px;
+            letter-spacing: 2px;
+
+            color: #55566c;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="menu-container">
+
+        <h1 class="title">Midnight</h1>
+
+        <div class="line"></div>
+
+        <!-- Este botón abre otro archivo HTML -->
+        <a href="sleep well d4vd.html" class="menu-button">
+            LYRICS
+        </a>
+
+        <a href="https://open.spotify.com/intl-es/track/61MhXxcy6MUhrDeHCDE7AP?si=adf50f605f2e4016" class="menu-button">
+            CANCION
+        </a>
+
+        <a href = "sleepwell.pdf"  class="menu-button">
+            SIGNIFICADO (PDF)
+        </a>
+
+        <div class="footer">
+            SLEEP WELL · AFTER MIDNIGHT
+        </div>
+        
+
+    </div>
+
+</body>
+</html>

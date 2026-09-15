@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sleep Well — d4vd</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            color: #eeeaf5;
+            font-family: 'Inter', sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 50% 15%,
+                    rgba(105, 111, 170, 0.20),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    180deg,
+                    #090b18 0%,
+                    #111329 50%,
+                    #070812 100%
+                );
+
+            overflow-x: hidden;
+        }
+
+        /* Estrellas */
+        .stars,
+        .stars::before,
+        .stars::after {
+            position: fixed;
+            inset: 0;
+
+            content: "";
+
+            pointer-events: none;
+
+            background-image:
+                radial-gradient(1px 1px at 10% 20%, white, transparent),
+                radial-gradient(1px 1px at 25% 70%, white, transparent),
+                radial-gradient(2px 2px at 40% 35%, #cbd0ff, transparent),
+                radial-gradient(1px 1px at 55% 15%, white, transparent),
+                radial-gradient(2px 2px at 70% 55%, #d9dcff, transparent),
+                radial-gradient(1px 1px at 85% 25%, white, transparent),
+                radial-gradient(1px 1px at 92% 80%, white, transparent),
+                radial-gradient(1px 1px at 15% 90%, #cbd0ff, transparent);
+
+            background-size: 280px 280px;
+
+            opacity: 0.5;
+
+            animation: drift 18s linear infinite;
+        }
+
+        .stars::before {
+            opacity: 0.25;
+            transform: scale(1.4);
+            animation-duration: 30s;
+        }
+
+        .stars::after {
+            opacity: 0.15;
+            transform: scale(1.8);
+            animation-duration: 45s;
+        }
+
+        @keyframes drift {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-80px);
+            }
+        }
+
+        /* Contenedor principal */
+        .container {
+            position: relative;
+            z-index: 2;
+
+            width: min(900px, 92%);
+
+            margin: auto;
+            padding: 70px 0;
+        }
+
+        /* Luna */
+        .moon {
+            position: relative;
+
+            width: 110px;
+            height: 110px;
+
+            margin: 0 auto 45px;
+
+            border-radius: 50%;
+
+            background: #f0efff;
+
+            box-shadow:
+                0 0 30px rgba(214, 215, 255, 0.45),
+                0 0 100px rgba(132, 137, 211, 0.15);
+        }
+
+        .moon::after {
+            content: "";
+
+            position: absolute;
+
+            width: 100px;
+            height: 100px;
+
+            top: -7px;
+            left: 24px;
+
+            border-radius: 50%;
+
+            background: #090b18;
+        }
+
+        /* Encabezado */
+        header {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .eyebrow {
+            color: #989bc0;
+
+            text-transform: uppercase;
+
+            letter-spacing: 5px;
+
+            font-size: 11px;
+
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: clamp(60px, 11vw, 105px);
+
+            font-weight: 400;
+
+            line-height: 0.9;
+
+            letter-spacing: -3px;
+        }
+
+        .artist {
+            margin-top: 18px;
+
+            color: #aaaac2;
+
+            font-size: 14px;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+        }
+
+        /* Reproductor */
+        .player {
+            padding: 30px;
+
+            border: 1px solid rgba(255, 255, 255, 0.09);
+
+            border-radius: 24px;
+
+            background: rgba(255, 255, 255, 0.045);
+
+            backdrop-filter: blur(16px);
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.35);
+
+            margin-bottom: 55px;
+        }
+
+        .player-top {
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+        }
+
+        .cover {
+            width: 82px;
+            height: 82px;
+
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.13),
+                    transparent
+                ),
+                #20233f;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.3);
+
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 30px;
+        }
+
+        .track-info h2 {
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 29px;
+
+            font-weight: 500;
+        }
+
+        .track-info p {
+            color: #9b9db7;
+
+            margin-top: 4px;
+
+            font-size: 13px;
+        }
+
+        audio {
+            width: 100%;
+
+            margin-top: 25px;
+
+            opacity: 0.8;
+        }
+
+        /* Letras */
+        .lyrics-section {
+            max-width: 680px;
+
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 42px;
+
+            font-weight: 400;
+
+            margin-bottom: 15px;
+        }
+
+        .line {
+            width: 35px;
+            height: 1px;
+
+            background: #8588b3;
+
+            margin: 0 auto 40px;
+        }
+
+        .lyrics {
+            padding: 40px;
+
+            border-left:
+                1px solid rgba(180, 180, 220, 0.15);
+
+            border-right:
+                1px solid rgba(180, 180, 220, 0.15);
+        }
+
+        .lyrics p {
+            color: #b7b7ca;
+
+            font-family: 'Cormorant Garamond', serif;
+
+            font-size: 22px;
+
+            line-height: 1.9;
+
+            text-align: center;
+
+            white-space: pre-line;
+        }
+
+        .placeholder {
+            color: #70738f !important;
+
+            font-family: 'Inter', sans-serif !important;
+
+            font-size: 13px !important;
+
+            line-height: 1.8 !important;
+
+            padding: 20px;
+
+            border:
+                1px dashed rgba(255, 255, 255, 0.12);
+
+            border-radius: 12px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+
+            margin-top: 80px;
+
+            color: #5f627c;
+
+            font-size: 11px;
+
+            letter-spacing: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 45px 0;
+            }
+
+            .moon {
+                width: 85px;
+                height: 85px;
+
+                margin-bottom: 35px;
+            }
+
+            .moon::after {
+                width: 77px;
+                height: 77px;
+
+                left: 19px;
+            }
+
+            .player {
+                padding: 20px;
+            }
+
+            .lyrics {
+                padding: 25px 15px;
+            }
+
+            .lyrics p {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="stars"></div>
+
+    <main class="container">
+
+        <div class="moon"></div>
+
+        <header>
+            <div class="eyebrow">
+                late night memories
+            </div>
+
+            <h1>
+                Sleep Well
+            </h1>
+
+            <div class="artist">
+                d4vd
+            </div>
+        </header>
+
+
+   
+
+        <section class="lyrics-section">
+
+            <h2 class="section-title">
+                Lyrics
+            </h2>
+
+            <div class="line"></div>
+
+            <div class="lyrics">
+
+                <p class="placeholder">
+                    
+                    <br>Do you think about me every night
+Before you go to sleep? (Yeah)
+I know you must be terrified
+Of what you might see in your dreams, but
+
+I'm here for you still
+And even if you don't think that I'm near
+I'll still be right next to you, my dear (mm)
+And the way you make me feel
+Has the power to make the whole world stand still
+Who's to say that our love ain't real? (Mm)
+
+And I know I'm not the perfect guy
+But I think I'm doing just alright
+It doesn't matter what you thought of me then
+But what you think of me now
+
+We haven't always seen eye to eye
+But right now, won't you look at mine?
+Don't be scared, there's no such thing as fear
+When you sleep, just know that
+
+I'm here for you still
+And even if you don't think that I'm near
+I'll still be right next to you, my dear (mm)
+And the way you make me feel
+Has the power to make the whole world stand still
+Who's to say that our love ain't real?
+                  
+            
+
+            </div>
+
+        </section>
+
+        <footer>
+            SLEEP WELL · D4VD · AFTER MIDNIGHT
+        </footer>
+         <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            background:
+                radial-gradient(circle at 20% 25%, rgba(130, 140, 190, 0.12) 1px, transparent 2px),
+                radial-gradient(circle at 80% 70%, rgba(130, 140, 190, 0.10) 1px, transparent 2px),
+                #0b0d20;
+
+            background-size: 180px 180px, 230px 230px;
+
+            color: #b9b8c9;
+            font-family: Georgia, "Times New Roman", serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Contenedor principal */
+
+        .menu-container {
+            width: 340px;
+            min-height: 500px;
+
+            padding: 45px 35px;
+
+            border-left: 1px solid rgba(180, 185, 220, 0.25);
+            border-right: 1px solid rgba(180, 185, 220, 0.25);
+
+            text-align: center;
+
+            position: relative;
+        }
+
+        /* Título */
+
+        .title {
+            font-size: 22px;
+            font-weight: normal;
+            letter-spacing: 1px;
+
+            margin: 0;
+            color: #d0cedb;
+        }
+
+        .line {
+            width: 18px;
+            height: 1px;
+
+            background: #aaaabd;
+
+            margin: 10px auto 45px;
+        }
+
+        /* Botones */
+
+        .menu-button {
+            display: block;
+
+            width: 100%;
+            padding: 17px 10px;
+
+            margin: 16px 0;
+
+            background: rgba(15, 17, 38, 0.35);
+
+            border: 1px solid rgba(160, 165, 200, 0.22);
+            border-radius: 3px;
+
+            color: #aaa9bb;
+
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 13px;
+            letter-spacing: 2px;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            transition:
+                background 0.3s ease,
+                border-color 0.3s ease,
+                color 0.3s ease,
+                transform 0.3s ease;
+        }
+
+        .menu-button:hover {
+            background: rgba(90, 95, 135, 0.12);
+
+            border-color: rgba(190, 195, 225, 0.45);
+
+            color: #dddce7;
+
+            transform: translateY(-2px);
+        }
+
+        /* Texto inferior */
+
+        .footer {
+            position: absolute;
+
+            bottom: 18px;
+            left: 0;
+            right: 0;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 7px;
+            letter-spacing: 2px;
+
+            color: #55566c;
+        }
+    </style>
+        <!-- Este botón abre otro archivo HTML -->
+    <a href="menu de mi web.html" class="menu-button">
+            Volver a menu
+        </a>
+
+    </main>
+
+
+
+</body>
+</html>
